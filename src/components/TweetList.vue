@@ -9,7 +9,9 @@ defineProps<Props>()
 
 const emit = defineEmits(['delete-tweet'])
 const deleteTweet = (id: number) => {
-  emit('delete-tweet', id)
+  if (confirm('delete?')) {
+    emit('delete-tweet', id)
+  }
 }
 </script>
 

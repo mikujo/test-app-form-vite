@@ -1,27 +1,21 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
-
-type Tweet = {
-  id: number,
-  description: string,
-}
+import { Tweet } from './Tweet.vue'
 
 type Props = {
   tweets: Tweet[]
 }
+defineProps<Props>()
 
 const emit = defineEmits(['delete-tweet'])
 const deleteTweet = (id: number) => {
   emit('delete-tweet', id)
 }
-
-defineProps<Props>()
-
 </script>
 
 <template>
   <li v-for="tweet in tweets" :key="tweet.id" class="tweet-list">
-    <span>{{ tweet.description }}</span>
+    <span>{{ tweet.description + ' (' + tweet.age + ')' }}</span>
     <button @click="deleteTweet(tweet.id)" class="delete-button">delete</button>
   </li>
 </template>

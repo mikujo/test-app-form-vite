@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import { ref, Ref } from 'vue'
 import TweetPostForm from './TweetPostForm.vue';
 import TweetList from './TweetList.vue';
-const tweets = ref([{id: 0, description: 'Hello world'}, {id: 1, description: 'this is the second'}])
 
-const postTweet = (description: string) => {
-  const tweet = {id: Math.random(), description}
+export type Tweet = {
+  id: number,
+  description: string,
+  age: number,
+}
+
+const tweets: Ref<Tweet[]> = ref([{id: 0, description: 'Hello world', age: 24}, {id: 1, description: 'this is the second', age: 18}])
+
+const postTweet = (tweet: Tweet) => {
   tweets.value.push(tweet)
 }
 

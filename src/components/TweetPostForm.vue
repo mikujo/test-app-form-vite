@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { ref, defineEmits } from 'vue'
 const inputtingDescription = ref<string>('')
+const inputtingAge = ref<number>(0)
 
 const emit = defineEmits(['post-tweet'])
 const postTweet = () => {
-  emit('post-tweet', inputtingDescription.value)
+  const tweet = {id: Math.random(), description: inputtingDescription, age: inputtingAge}
+  emit('post-tweet', tweet)
+  // inputtingDescription.value = ''
+  // inputtingAge.value = 0
 }
 
 </script>
 
 <template>
   <div class="form-container">
-    <input v-model="inputtingDescription" />
+    <div class="form-small">
+      <label>description:</label>
+      <input v-model="inputtingDescription" />
+    </div>
+    <div class="form-small">
+      <label>age:</label>
+      <input v-model="inputtingAge" type="number" />
+    </div>
     <button class="save-button" @click="postTweet()">post</button>
   </div>
 </template>
@@ -26,6 +37,15 @@ const postTweet = () => {
   width: 60%;
   margin-bottom: 12px;
   border-radius: 4px;
+}
+
+.form-small {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.form-small > label {
+  width: 100px;
 }
 
 .save-button {

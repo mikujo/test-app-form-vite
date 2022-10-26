@@ -6,7 +6,12 @@ import Payment from './components/Payment.vue'
 import Tweet from './components/Tweet.vue'
 import CardList from './components/CardList.vue';
 import SecondCardList from './components/SecondCardList.vue';
-import { ref, computed } from 'vue'
+import TodoList from './components/TodoList.vue'
+import { todos, todoKey } from './useTodo'
+import { ref, computed, provide } from 'vue'
+
+// provide('todos', todos)
+provide(todoKey, todos)
 
 const currentTab = ref('')
 const selectTab = (tabName: string) => {
@@ -25,6 +30,8 @@ const currentComponent = computed(() => {
       return CardList
     case 'SecondCardList':
       return SecondCardList
+    case 'TodoList':
+      return TodoList
     default:
       return HelloWorld
   }
@@ -42,12 +49,7 @@ const currentComponent = computed(() => {
   </div>
   <div class="tab-contents">
     <component :is="currentComponent"></component>
-    <!-- <CardList v-if="isFirstTab"></CardList>
-    <SecondCardList v-if="!isFirstTab"></SecondCardList> -->
   </div>
-  <!-- <Tweet /> -->
-  <!-- <PyamentVue /> -->
-  <!-- <HelloWorld msg="Vite + Vue + typescript" /> -->
 </template>
 
 <!-- scoped = 他のVueファイルと共有しない -->

@@ -7,6 +7,7 @@ import Tweet from './components/Tweet.vue'
 import CardList from './components/CardList.vue';
 import SecondCardList from './components/SecondCardList.vue';
 import TodoList from './components/TodoList.vue'
+import Form from './components/Form.vue'
 import { todos, todoKey } from './useTodo'
 import { ref, computed, provide } from 'vue'
 
@@ -32,6 +33,8 @@ const currentComponent = computed(() => {
       return SecondCardList
     case 'TodoList':
       return TodoList
+    case 'Form':
+      return Form
     default:
       return HelloWorld
   }
@@ -46,6 +49,7 @@ const currentComponent = computed(() => {
     <button @click="selectTab('CardList')">CardList1</button>
     <button @click="selectTab('SecondCardList')">CardList2</button>
     <button @click="selectTab('TodoList')">TodoList</button>
+    <button @click="selectTab('Form')">Form</button>
   </div>
   <div class="tab-contents">
     <component :is="currentComponent"></component>
